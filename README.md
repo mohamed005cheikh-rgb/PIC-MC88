@@ -2,7 +2,7 @@
 
 Professional browser-based image processing studio. 100% client-side. Zero-server privacy.
 
-───
+
 
 العربية
 
@@ -35,7 +35,6 @@ PIC by MC88 هو مختبر رقمي لتحرير الصور ومعالجتها�
 
 لا تسجيل. لا تحميل. لا خوادم. فقط أنت وصورتك.
 
-───
 
 Français
 
@@ -68,7 +67,6 @@ Comment commencer ?
 
 Pas d'inscription. Pas de téléchargement. Pas de serveurs. Juste vous et votre image.
 
-───
 
 English
 
@@ -97,6 +95,5 @@ Quick Start:
 
 No signup. No download. No servers. Just you and your image.
 
-───
 
 © 2026 PIC by MC88 | mohamed005cheikh@gmail.com
