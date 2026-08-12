@@ -1,4 +1,4 @@
-# PIC by MC88 — The Alchemist Lab
+# PIC by MC88 
 
 A professional, zero-server image processing studio that runs entirely in your browser.  
 100% client-side. Your photos never leave your device.
