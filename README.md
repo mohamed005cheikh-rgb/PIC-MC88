@@ -32,10 +32,5 @@ Fast, secure, and private. No downloads, no sign-ups, no data leaks.
 **No signup. No servers. Just you and your image.**
 
 ---
-<div align="center">
-  <br>
-  <img src="WM.png" alt="MC88 Watermark" width="100px">
-  <br>
-</div>
 
 © 2026 PIC by MC88 | [mohamed005cheikh@gmail.com](mailto:mohamed005cheikh@gmail.com)
