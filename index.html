@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>PIC by MC88 | Professional Image Studio</title>
-    <meta name="description" content="Professional browser-based image processing. 100% client-side. Your images never leave your device.">
+    <meta name="description" content="Professional browser-based photo studio. Local editing is 100% client-side; AI restore, colorize and enhance use free public AI models.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
@@ -187,6 +187,7 @@
             background: var(--panel2);
             white-space: nowrap;
             font-weight: 500;
+            cursor: default;
         }
         .privacy-tag i {
             color: var(--good);
@@ -693,8 +694,10 @@
             -webkit-backdrop-filter: blur(12px);
             transition: var(--transition);
             width: 100%;
-            max-width: 360px;
+            max-width: 380px;
+            animation: cardIn .6s cubic-bezier(.2,.7,.2,1) both;
         }
+        @keyframes cardIn { from{opacity:0;transform:translateY(16px) scale(.97);} to{opacity:1;transform:translateY(0) scale(1);} }
         .drop-zone:hover {
             border-color: var(--accent);
             box-shadow: 0 0 30px var(--glow);
@@ -724,7 +727,22 @@
         .drop-zone p {
             font-size: 11px;
             color: var(--muted);
-            margin: 0;
+            margin: 0 0 14px;
+        }
+        .drop-zone-pills {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .drop-zone-pills span {
+            font-size: 9px;
+            font-weight: 600;
+            color: var(--accent);
+            background: var(--glow);
+            padding: 4px 10px;
+            border-radius: 20px;
+            letter-spacing: .3px;
         }
 
         /* LOADER */
@@ -741,6 +759,8 @@
             flex-direction: column;
             gap: 14px;
             border-radius: 10px;
+            text-align: center;
+            padding: 20px;
         }
         .loader-overlay.show {
             display: flex;
@@ -765,6 +785,13 @@
             color: var(--muted);
             font-weight: 500;
             letter-spacing: 0.4px;
+            max-width: 260px;
+        }
+        .loader-sub {
+            font-size: 9px;
+            color: var(--muted);
+            opacity: .7;
+            max-width: 260px;
         }
 
         /* FLOATING DOCK */
@@ -884,7 +911,7 @@
             z-index: 10000;
             transform: translateY(100%);
             transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
-            max-height: 60vh;
+            max-height: 78vh;
             overflow-y: auto;
             border-radius: 22px 22px 0 0;
             backdrop-filter: blur(20px);
@@ -1028,6 +1055,8 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             font-family: var(--font-body);
+            max-width: 88vw;
+            text-align: center;
         }
         .toast.show {
             opacity: 1;
@@ -1045,6 +1074,203 @@
             background: var(--panel);
             font-family: var(--font-body);
             letter-spacing: 0.3px;
+        }
+
+        /* ============================================
+           AI STUDIO — colorize / restore / enhance
+           ============================================ */
+        .ai-intro {
+            font-size: 10.5px;
+            line-height: 1.6;
+            color: var(--muted);
+            background: var(--panel2);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-sm);
+            padding: 10px 12px;
+            margin-bottom: 12px;
+        }
+        .ai-intro b { color: var(--text); }
+        .ai-action-card {
+            border: 1px solid var(--line);
+            background: var(--panel2);
+            border-radius: 14px;
+            padding: 14px;
+            margin-bottom: 10px;
+            transition: var(--transition);
+        }
+        .ai-action-card:hover { border-color: var(--border-hover, var(--accent)); }
+        .ai-action-head {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+        .ai-action-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: #fff;
+            font-size: 14px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px var(--glow);
+        }
+        .ai-action-title { font-size: 12.5px; font-weight: 700; font-family: var(--font-body); }
+        .ai-action-desc { font-size: 10px; color: var(--muted); line-height: 1.5; margin-bottom: 10px; }
+        .ai-action-btn {
+            width: 100%;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid var(--accent);
+            background: transparent;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 10.5px;
+            font-family: var(--font-body);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .ai-action-btn:hover {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 0 14px var(--glow);
+        }
+        .ai-action-btn:disabled { opacity: .4; pointer-events: none; }
+
+        /* Versions strip */
+        .versions-row {
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            padding: 2px 0 10px;
+            margin-bottom: 4px;
+            scrollbar-width: none;
+        }
+        .versions-row::-webkit-scrollbar { display: none; }
+        .version-chip {
+            flex-shrink: 0;
+            padding: 6px 12px;
+            border-radius: 20px;
+            border: 1px solid var(--line);
+            background: var(--panel2);
+            color: var(--muted);
+            font-size: 9.5px;
+            font-weight: 700;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: var(--transition);
+        }
+        .version-chip.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: #fff;
+            border-color: transparent;
+        }
+
+        /* Retouch assistant */
+        .assistant-panel {
+            border: 1px solid var(--line);
+            background: var(--panel2);
+            border-radius: 14px;
+            padding: 14px;
+            margin-top: 12px;
+        }
+        .assistant-head {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+        .assistant-avatar {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            display: grid;
+            place-items: center;
+            color: #fff;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+        .assistant-title { font-size: 11.5px; font-weight: 700; }
+        .assistant-sub { font-size: 9.5px; color: var(--muted); margin-bottom: 10px; }
+        .assistant-log {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom: 10px;
+            max-height: 110px;
+            overflow-y: auto;
+        }
+        .assistant-bubble {
+            align-self: flex-start;
+            background: var(--panel);
+            border: 1px solid var(--line);
+            padding: 6px 10px;
+            border-radius: 10px 10px 10px 2px;
+            font-size: 9.5px;
+            color: var(--text);
+            max-width: 90%;
+            animation: fadeUp .25s ease both;
+        }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(4px);} to{opacity:1;transform:translateY(0);} }
+        .assistant-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+        .assistant-chip {
+            padding: 6px 10px;
+            border-radius: 16px;
+            border: 1px solid var(--line);
+            background: var(--panel);
+            color: var(--muted);
+            font-size: 9.5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .assistant-chip:hover { border-color: var(--accent); color: var(--text); }
+        .assistant-input-row { display: flex; gap: 6px; margin-bottom: 8px; }
+        .assistant-input {
+            flex: 1;
+            padding: 8px 10px;
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 10px;
+            font-family: var(--font-body);
+            outline: none;
+        }
+        .assistant-input:focus { border-color: var(--accent); }
+        .assistant-send {
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: none;
+            background: var(--accent);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .assistant-happy {
+            width: 100%;
+            padding: 9px;
+            border-radius: 10px;
+            border: none;
+            background: linear-gradient(135deg, var(--good), #22c55e);
+            color: #04210f;
+            font-weight: 800;
+            font-size: 10.5px;
+            cursor: pointer;
+            font-family: var(--font-body);
         }
 
         @media(max-width: 768px) {
@@ -1087,6 +1313,10 @@
                 padding: 5px 10px;
             }
         }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation: none !important; transition: none !important; }
+        }
     </style>
 </head>
 <body>
@@ -1104,7 +1334,7 @@
                 <button class="theme-dot gray" data-theme="gray" title="Gray">🪶</button>
                 <button class="theme-dot light" data-theme="light" title="Light">☁️</button>
             </div>
-            <div class="privacy-tag"><i class="fa-solid fa-shield-halved"></i> 100% Client-Side</div>
+            <div class="privacy-tag" title="Local edits (sliders, filters) never leave your device. Only the 3 AI Studio actions send your photo to a free public AI service."><i class="fa-solid fa-shield-halved"></i> Local edits stay on-device</div>
         </header>
 
         <!-- WORKSPACE -->
@@ -1113,6 +1343,7 @@
                 <div class="tabs-row">
                     <button class="tab-btn active" data-tab="adjust">Adjust</button>
                     <button class="tab-btn" data-tab="filters">Filters</button>
+                    <button class="tab-btn" data-tab="ai">AI Studio</button>
                     <button class="tab-btn" data-tab="export">Export</button>
                 </div>
 
@@ -1149,6 +1380,45 @@
                     </div>
                 </div>
 
+                <!-- AI STUDIO TAB -->
+                <div class="tab-panel" id="tab-ai">
+                    <div class="section-label">AI Studio</div>
+                    <div class="ai-intro">
+                        <b>How this works:</b> the three actions below send your photo to a <b>free public AI service</b> (not our server) for processing — that's the only time a photo leaves your device. Everything else on this page (sliders, filters, export) runs entirely on your phone.
+                    </div>
+
+                    <div class="versions-row" id="versionsRow"></div>
+
+                    <div class="ai-action-card">
+                        <div class="ai-action-head">
+                            <div class="ai-action-icon"><i class="fa-solid fa-palette"></i></div>
+                            <div class="ai-action-title">Colorize</div>
+                        </div>
+                        <div class="ai-action-desc">Bring a black-and-white photo to life with natural, AI-predicted color.</div>
+                        <button class="ai-action-btn" id="btnColorize"><i class="fa-solid fa-wand-magic-sparkles"></i> Colorize Photo</button>
+                    </div>
+
+                    <div class="ai-action-card">
+                        <div class="ai-action-head">
+                            <div class="ai-action-icon"><i class="fa-solid fa-kit-medical"></i></div>
+                            <div class="ai-action-title">Restore</div>
+                        </div>
+                        <div class="ai-action-desc">Fix scratches, noise, and blurry faces — built for old or damaged photos.</div>
+                        <button class="ai-action-btn" id="btnRestore"><i class="fa-solid fa-kit-medical"></i> Restore Photo</button>
+                    </div>
+
+                    <div class="ai-action-card">
+                        <div class="ai-action-head">
+                            <div class="ai-action-icon"><i class="fa-solid fa-expand"></i></div>
+                            <div class="ai-action-title">Enhance &amp; Upscale</div>
+                        </div>
+                        <div class="ai-action-desc">Sharpen detail and increase resolution for a crisper, more realistic result.</div>
+                        <button class="ai-action-btn" id="btnUpscale"><i class="fa-solid fa-expand"></i> Enhance Photo</button>
+                    </div>
+
+                    <div id="assistantHost"></div>
+                </div>
+
                 <div class="tab-panel" id="tab-export">
                     <div class="section-label">Export Settings</div>
                     <div class="slider-wrap" style="margin-bottom:16px;"><label>Format</label><select id="fmtSide" class="custom-select"><option value="image/jpeg">JPEG</option><option value="image/png">PNG</option><option value="image/webp">WebP</option></select></div>
@@ -1158,14 +1428,17 @@
             </aside>
 
             <div class="canvas-area" id="canvasArea">
-                <div class="drop-zone" id="dropZone"><i class="fa-solid fa-cloud-arrow-up"></i><h2>Upload Image</h2><p>Tap or drag & drop here</p></div>
+                <div class="drop-zone" id="dropZone">
+                    <i class="fa-solid fa-cloud-arrow-up"></i><h2>Upload a Photo</h2><p>Tap or drag &amp; drop here</p>
+                    <div class="drop-zone-pills"><span>AI Colorize</span><span>AI Restore</span><span>AI Upscale</span></div>
+                </div>
                 <div class="canvas-wrap" id="canvasWrap" style="display:none"><canvas id="outCanvas"></canvas><div class="compare-clip" id="compareClip" style="width:50%"><canvas id="origCanvas"></canvas></div><div class="compare-line" id="compareLine"></div><div class="compare-knob" id="compareKnob"></div></div>
                 <div class="image-info-badge" id="imageInfo"><i class="fa-solid fa-image"></i><span id="imageDim">0 × 0 px</span></div>
-                <div class="loader-overlay" id="loader"><div class="loader-ring"></div><span class="loader-text" id="loaderText">Processing...</span></div>
+                <div class="loader-overlay" id="loader"><div class="loader-ring"></div><span class="loader-text" id="loaderText">Processing...</span><span class="loader-sub" id="loaderSub"></span></div>
                 <div class="floating-dock" id="floatingDock" style="display:none">
                     <button class="dock-btn" id="dockCompare"><i class="fa-solid fa-circle-half-stroke"></i> Compare</button>
-                    <button class="dock-btn primary" id="dockRestore"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Restore</button>
-                    <button class="dock-btn" id="dockRandom"><i class="fa-solid fa-dice"></i> Random</button>
+                    <button class="dock-btn primary" id="dockAI"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Studio</button>
+                    <button class="dock-btn" id="dockRandom"><i class="fa-solid fa-dice"></i> Surprise</button>
                     <button class="dock-btn" id="dockExport"><i class="fa-solid fa-download"></i> Export</button>
                 </div>
             </div>
@@ -1174,7 +1447,7 @@
         <div class="mobile-bar" id="mobileBar" style="display:none"><div class="inner">
             <button class="mob-btn" id="mobAdjust"><i class="fa-solid fa-sliders"></i> Adjust</button>
             <button class="mob-btn" id="mobFilters"><i class="fa-solid fa-filter"></i> Filters</button>
-            <button class="mob-btn primary" id="mobRestore"><i class="fa-solid fa-wand-magic-sparkles"></i> Restore</button>
+            <button class="mob-btn primary" id="mobAI"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Studio</button>
             <button class="mob-btn" id="mobExport"><i class="fa-solid fa-download"></i> Export</button>
         </div></div>
 
@@ -1189,8 +1462,17 @@
     </div>
 
     <div class="toast" id="toast"></div>
-    <footer>PIC by MC88 — The Alchemist Lab</footer>
+    <footer>PIC by MC88 — The Alchemist Lab · Local edits stay on-device · AI actions use free public models</footer>
     <input type="file" id="fileInput" accept="image/*" style="display:none">
+
+    <!-- Loads the official Gradio JS client so this page can call free public
+         Hugging Face Spaces (real AI models) directly from the browser.
+         See the AI_PROVIDERS guide inside the main script for how to swap models. -->
+    <script type="module">
+        import { Client } from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
+        window.__GradioClient = Client;
+        window.dispatchEvent(new Event('gradio-client-ready'));
+    </script>
 
     <script>
         (() => {
@@ -1210,10 +1492,13 @@
                 isDragging: false,
                 exportFormat: "image/jpeg",
                 processingTimer: null,
-                // Undo/Redo stack
+                // Undo/Redo stack (slider + filter settings only)
                 undoStack: [],
                 redoStack: [],
-                maxUndoSteps: 30
+                maxUndoSteps: 30,
+                // AI version history: [{label, img}], versionIndex points at State.img
+                versions: [],
+                versionIndex: -1
             };
 
             // ═══════════════════════════════════════════
@@ -1229,6 +1514,7 @@
                 compareKnob = $("#compareKnob"),
                 loader = $("#loader"),
                 loaderText = $("#loaderText"),
+                loaderSub = $("#loaderSub"),
                 floatingDock = $("#floatingDock"),
                 mobileBar = $("#mobileBar"),
                 bottomSheet = $("#bottomSheet"),
@@ -1300,7 +1586,7 @@
             function toast(t) { toastEl.textContent = t;
                 toastEl.classList.add("show");
                 clearTimeout(toast._t);
-                toast._t = setTimeout(() => toastEl.classList.remove("show"), 2000); }
+                toast._t = setTimeout(() => toastEl.classList.remove("show"), 2600); }
 
             // ═══════════════════════════════════════════
             // CUSTOM PRESETS (LocalStorage)
@@ -1442,6 +1728,9 @@
                         State.variantSeed = 0;
                         State.undoStack = [];
                         State.redoStack = [];
+                        State.versions = [{ label: "Original", img }];
+                        State.versionIndex = 0;
+                        renderVersions();
                         updateUndoRedoButtons();
                         dropZone.style.display = "none";
                         canvasWrap.style.display = "inline-flex";
@@ -1478,7 +1767,7 @@
                     compareKnob.style.left = pct + "%"; } };
 
             // ═══════════════════════════════════════════
-            // UNDO / REDO
+            // UNDO / REDO  (slider + filter settings)
             // ═══════════════════════════════════════════
             function getCurrentSnapshot() {
                 return {
@@ -1550,6 +1839,24 @@
             redoBtn.onclick = redo;
 
             // ═══════════════════════════════════════════
+            // SLIDER <-> LABEL ID MAP (reused by the
+            // retouch assistant below to nudge values)
+            // ═══════════════════════════════════════════
+            const SLIDER_LABELS = { brightness: "vb", contrast: "vc", sharp: "vs", noise: "vn", sat: "vsa", deblur: "vde",
+                intensity: "vin" };
+
+            function nudgeSlider(id, delta) {
+                const el = $("#" + id);
+                if (!el) return;
+                const min = +el.min,
+                    max = +el.max;
+                const val = Math.max(min, Math.min(max, +el.value + delta));
+                el.value = val;
+                const lbl = $("#" + SLIDER_LABELS[id]);
+                if (lbl) lbl.textContent = val;
+            }
+
+            // ═══════════════════════════════════════════
             // ENGINE — 100 Unique Filter Equations
             // ═══════════════════════════════════════════
             const Engine = {
@@ -1565,6 +1872,7 @@
                         renderFilters($("#filterSearch")?.value || ""); }
                     loader.classList.add("show");
                     loaderText.textContent = isRemix ? `Variant #${State.variantSeed}...` : "Processing...";
+                    loaderSub.textContent = "";
                     clearTimeout(State.processingTimer);
                     State.processingTimer = setTimeout(() => { try { const previewMax = 1080; const r = State.img
                                 .naturalWidth / State.img.naturalHeight; let w = State.img.naturalWidth,
@@ -1802,8 +2110,6 @@
             // ═══════════════════════════════════════════
             // BUTTONS
             // ═══════════════════════════════════════════
-            $("#dockRestore").onclick = () => { pushUndo();
-                Engine.process(true); };
             $("#dockRandom").onclick = () => { pushUndo();
                 Engine.process(true); };
             $("#dockExport").onclick = () => { exportPopup.classList.add("show"); };
@@ -1811,8 +2117,8 @@
                 compareClip.style.display = h ? "block" : "none";
                 compareLine.style.display = h ? "block" : "none";
                 compareKnob.style.display = h ? "grid" : "none"; };
-            $("#mobRestore").onclick = () => { pushUndo();
-                Engine.process(true); };
+            $("#dockAI").onclick = () => { $$(".tab-btn").forEach(b => b.classList.toggle("active", b.dataset.tab === "ai"));
+                $$(".tab-panel").forEach(p => p.classList.toggle("active", p.id === "tab-ai")); };
             $("#mobExport").onclick = () => { exportPopup.classList.add("show"); };
             $("#popupDownload").onclick = () => { exportPopup.classList.remove("show");
                 Engine.download(); };
@@ -1892,6 +2198,363 @@
                     $$("#filterGridMob .filter-btn").forEach(el => { el.style.display = el.textContent.toLowerCase()
                             .includes(q) ? "flex" : "none"; }); }; };
 
+            $("#mobAI").onclick = () => {
+                bottomSheet.innerHTML = `
+                <div class="section-label">AI Studio</div>
+                <div class="ai-intro"><b>How this works:</b> these three actions send your photo to a <b>free public AI service</b> for processing — everything else on this page stays on your device.</div>
+                <div class="versions-row" id="versionsRowMob"></div>
+                <div class="ai-action-card">
+                    <div class="ai-action-head"><div class="ai-action-icon"><i class="fa-solid fa-palette"></i></div><div class="ai-action-title">Colorize</div></div>
+                    <div class="ai-action-desc">Bring a black-and-white photo to life with natural, AI-predicted color.</div>
+                    <button class="ai-action-btn" id="btnColorizeMob"><i class="fa-solid fa-wand-magic-sparkles"></i> Colorize Photo</button>
+                </div>
+                <div class="ai-action-card">
+                    <div class="ai-action-head"><div class="ai-action-icon"><i class="fa-solid fa-kit-medical"></i></div><div class="ai-action-title">Restore</div></div>
+                    <div class="ai-action-desc">Fix scratches, noise, and blurry faces — built for old or damaged photos.</div>
+                    <button class="ai-action-btn" id="btnRestoreMob"><i class="fa-solid fa-kit-medical"></i> Restore Photo</button>
+                </div>
+                <div class="ai-action-card">
+                    <div class="ai-action-head"><div class="ai-action-icon"><i class="fa-solid fa-expand"></i></div><div class="ai-action-title">Enhance &amp; Upscale</div></div>
+                    <div class="ai-action-desc">Sharpen detail and increase resolution for a crisper, more realistic result.</div>
+                    <button class="ai-action-btn" id="btnUpscaleMob"><i class="fa-solid fa-expand"></i> Enhance Photo</button>
+                </div>
+                <div id="assistantHostMob"></div>
+                <button class="mob-btn" style="width:100%;margin-top:10px;padding:12px;" id="sheetClose">Close</button>`;
+                bottomSheet.classList.add("show");
+                $("#sheetClose").onclick = () => bottomSheet.classList.remove("show");
+                renderVersions();
+                renderAssistant($("#assistantHostMob"));
+                $("#btnColorizeMob").onclick = () => runAI("colorize");
+                $("#btnRestoreMob").onclick = () => runAI("restore");
+                $("#btnUpscaleMob").onclick = () => runAI("upscale");
+            };
+
+            // ═══════════════════════════════════════════
+            // VERSIONS — switch between Original and any
+            // AI-produced result. Local sliders/filters
+            // always apply on top of whichever version is
+            // selected here.
+            // ═══════════════════════════════════════════
+            function renderVersions() {
+                const html = State.versions.map((v, i) =>
+                    `<button class="version-chip ${i===State.versionIndex?'active':''}" data-i="${i}">${v.label}</button>`
+                ).join("");
+                ["#versionsRow", "#versionsRowMob"].forEach(sel => { const el = $(sel); if (!el) return;
+                    el.innerHTML = html;
+                    $$(sel + " .version-chip").forEach(b => b.onclick = () => switchVersion(+b.dataset.i)); });
+            }
+
+            function switchVersion(i) {
+                if (i < 0 || i >= State.versions.length) return;
+                State.versionIndex = i;
+                State.img = State.versions[i].img;
+                renderVersions();
+                UI.drawPreview();
+                Engine.process(false);
+                toast("Switched to: " + State.versions[i].label);
+            }
+
+            function addVersion(label, blob) {
+                return new Promise((resolve, reject) => {
+                    const url = URL.createObjectURL(blob);
+                    const img = new Image();
+                    img.onload = () => {
+                        State.versions.push({ label, img });
+                        State.versionIndex = State.versions.length - 1;
+                        State.img = img;
+                        renderVersions();
+                        UI.drawPreview();
+                        Engine.process(false);
+                        resolve();
+                    };
+                    img.onerror = reject;
+                    img.src = url;
+                });
+            }
+
+            // ═══════════════════════════════════════════
+            // AI BRIDGE
+            // ═══════════════════════════════════════════
+            // Calls free public AI models hosted as Hugging Face
+            // Spaces, directly from this browser tab — there is no
+            // server of ours in the middle. This works because
+            // every public Gradio Space automatically exposes an
+            // API, and the official @gradio/client library (loaded
+            // above as a module) knows how to call it and hand back
+            // the resulting image.
+            //
+            // ------------------------------------------------------
+            // AI_PROVIDERS — HOW TO ADD OR REPLACE A MODEL
+            // ------------------------------------------------------
+            // Each task below tries these Spaces in order and stops
+            // at the first one that answers. They're free, community
+            // -run demos, so one can occasionally be asleep or
+            // temporarily broken — that's normal, which is why more
+            // than one is listed per task, with a local fallback if
+            // every AI option is unreachable.
+            //
+            // To swap or add one:
+            //   1. Go to https://huggingface.co/spaces and search
+            //      "colorization", "GFPGAN", or "Real-ESRGAN" (or
+            //      any task you want to add).
+            //   2. Open a Space and confirm it says "Running" and
+            //      shows the Gradio logo at the bottom of the app.
+            //   3. Copy the "OWNER/NAME" part of its address, e.g.
+            //      huggingface.co/spaces/OWNER/NAME  ->  "OWNER/NAME"
+            //   4. Paste that string into the right list below.
+            // No other code changes are needed — this page reads
+            // whatever inputs that Space expects automatically.
+            // ------------------------------------------------------
+            const AI_PROVIDERS = {
+                colorize: [
+                    "viveknarayan/Image_Colorization",
+                    "Shashank009/Black_and_white_image_colorization"
+                ],
+                restore: [
+                    "randomtable/Image-Restoration-GFPGAN"
+                ],
+                upscale: [
+                    "kotchu/real-esrgan",
+                    "Hockman/real-esrgan-upscaler"
+                ]
+            };
+
+            const AI_LABELS = { colorize: "Colorize", restore: "Restore", upscale: "Enhance & Upscale" };
+            const AI_STATUS_LINES = {
+                colorize: ["Reading light and shadow…", "Predicting natural color…", "Painting it back in…"],
+                restore: ["Looking for scratches and noise…", "Rebuilding faces and fine detail…", "Polishing the result…"],
+                upscale: ["Studying every pixel…", "Reconstructing fine detail…", "Sharpening the result…"]
+            };
+
+            function waitForGradioClient(timeoutMs = 9000) {
+                return new Promise((resolve, reject) => {
+                    if (window.__GradioClient) return resolve(window.__GradioClient);
+                    const to = setTimeout(() => reject(new Error("AI engine failed to load")), timeoutMs);
+                    window.addEventListener("gradio-client-ready", () => { clearTimeout(to);
+                        resolve(window.__GradioClient); }, { once: true });
+                });
+            }
+
+            function withTimeout(promise, ms, label) {
+                return Promise.race([
+                    promise,
+                    new Promise((_, rej) => setTimeout(() => rej(new Error((label || "Request") + " timed out")), ms))
+                ]);
+            }
+
+            function looksLikeImageParam(p) {
+                try {
+                    const hay = JSON.stringify(p).toLowerCase();
+                    if (hay.includes('"component":"image"')) return true;
+                } catch (_) {}
+                const name = ((p && (p.label || p.parameter_name)) || "").toLowerCase();
+                return /image|photo|\bimg\b/.test(name);
+            }
+
+            function defaultForParam(p) {
+                if (p.parameter_default !== undefined && p.parameter_default !== null) return p.parameter_default;
+                if (p.example_input !== undefined && p.example_input !== null) return p.example_input;
+                const t = (p.python_type && p.python_type.type) || "";
+                if (Array.isArray(p.choices) && p.choices.length) return p.choices[0];
+                if (t.includes("bool")) return false;
+                if (t.includes("int") || t.includes("float")) return 2;
+                return "";
+            }
+
+            async function extractImageBlob(result) {
+                const data = (result && result.data) || [];
+                for (const item of data) {
+                    if (item instanceof Blob) return item;
+                    if (item && typeof item === "object") {
+                        const url = item.url || item.path || null;
+                        if (url) { try { const res = await fetch(url); if (res.ok) return await res.blob(); } catch (_) {} }
+                    }
+                }
+                throw new Error("No image found in AI response");
+            }
+
+            async function callGradioSpace(spaceId, imageBlob, timeoutMs) {
+                const Client = await waitForGradioClient();
+                const app = await withTimeout(Client.connect(spaceId), timeoutMs, "Connecting to " + spaceId);
+                const api = await withTimeout(app.view_api(), timeoutMs, "Reading API for " + spaceId);
+                const endpoints = (api && api.named_endpoints) || {};
+                const names = Object.keys(endpoints);
+                if (!names.length) throw new Error("No API endpoints on " + spaceId);
+                const chosen = names.find(n => (endpoints[n].parameters || []).some(looksLikeImageParam)) || names[0];
+                const params = endpoints[chosen].parameters || [];
+                const args = params.map(p => looksLikeImageParam(p) ? imageBlob : defaultForParam(p));
+                const result = await withTimeout(app.predict(chosen, args), timeoutMs, "Processing on " + spaceId);
+                return await extractImageBlob(result);
+            }
+
+            async function getAISourceBlob() {
+                // Cap the upload size so this stays fast on mobile data.
+                const maxSide = 1536;
+                const r = State.img.naturalWidth / State.img.naturalHeight;
+                let w = State.img.naturalWidth,
+                    h = State.img.naturalHeight;
+                if (Math.max(w, h) > maxSide) { if (w > h) { w = maxSide;
+                        h = Math.round(w / r); } else { h = maxSide;
+                        w = Math.round(h * r); } }
+                const c = document.createElement("canvas");
+                c.width = w;
+                c.height = h;
+                c.getContext("2d").drawImage(State.img, 0, 0, w, h);
+                return new Promise(res => c.toBlob(res, "image/jpeg", 0.94));
+            }
+
+            async function runAI(kind) {
+                if (!State.ready) { toast("Load a photo first"); return; }
+                const label = AI_LABELS[kind];
+                loader.classList.add("show");
+                loaderText.textContent = label + "…";
+                loaderSub.textContent = "This can take up to ~30s on a free public model — thanks for your patience.";
+                let statusI = 0;
+                const statusTimer = setInterval(() => { loaderSub.textContent = AI_STATUS_LINES[kind][statusI % AI_STATUS_LINES[
+                        kind].length];
+                    statusI++; }, 2200);
+
+                try {
+                    const blob = await getAISourceBlob();
+                    let resultBlob = null;
+                    for (const spaceId of AI_PROVIDERS[kind]) {
+                        try {
+                            resultBlob = await callGradioSpace(spaceId, blob, 30000);
+                            if (resultBlob) break;
+                        } catch (err) { console.warn("[AI] provider failed:", spaceId, err && err.message || err); }
+                    }
+                    clearInterval(statusTimer);
+                    loader.classList.remove("show");
+
+                    if (resultBlob) {
+                        await addVersion(label, resultBlob);
+                        toast("✨ " + label + " complete");
+                        openAssistant();
+                    } else {
+                        applyLocalFallback(kind);
+                        toast("The free AI service didn't answer in time — applied a strong local " + label.toLowerCase() +
+                            " instead");
+                    }
+                } catch (err) {
+                    clearInterval(statusTimer);
+                    loader.classList.remove("show");
+                    console.error(err);
+                    applyLocalFallback(kind);
+                    toast("AI Studio is unavailable right now — applied a local fallback instead");
+                }
+            }
+
+            function applyLocalFallback(kind) {
+                pushUndo();
+                if (kind === "restore") {
+                    nudgeSlider("noise", 20);
+                    nudgeSlider("sharp", 20);
+                    nudgeSlider("deblur", 20);
+                } else if (kind === "upscale") {
+                    nudgeSlider("sharp", 25);
+                    nudgeSlider("deblur", 15);
+                    nudgeSlider("contrast", 8);
+                } else if (kind === "colorize") {
+                    // Colorizing genuinely needs the AI model — there is no honest
+                    // local substitute, so we simply let the toast explain that.
+                    return;
+                }
+                if (State.ready) Engine.process(false);
+            }
+
+            $("#btnColorize").onclick = () => runAI("colorize");
+            $("#btnRestore").onclick = () => runAI("restore");
+            $("#btnUpscale").onclick = () => runAI("upscale");
+
+            // ═══════════════════════════════════════════
+            // RETOUCH ASSISTANT
+            // ------------------------------------------------------
+            // A small rules-based helper (not a language model) that
+            // reads a few keywords from what you type and nudges the
+            // matching sliders — instant, works offline, and free.
+            // Add more phrases by extending RETOUCH_RULES below.
+            // ═══════════════════════════════════════════
+            const RETOUCH_RULES = [
+                { keywords: ["dark", "shadow", "underexposed"], adjust: { brightness: 8, contrast: 2 }, reply: "Brightened it up a bit." },
+                { keywords: ["bright", "washed out", "overexposed", "too light"], adjust: { brightness: -8 }, reply: "Toned the brightness down." },
+                { keywords: ["flat", "dull", "boring", "lifeless"], adjust: { contrast: 6, sat: 6 }, reply: "Added some punch and contrast." },
+                { keywords: ["color", "colour", "tint", "unnatural", "off"], adjust: { sat: -6 }, reply: "Calmed the colors down." },
+                { keywords: ["blur", "blurry", "soft", "unclear", "fuzzy"], adjust: { sharp: 12, deblur: 10 }, reply: "Sharpened and deblurred further." },
+                { keywords: ["noise", "grain", "grainy", "speckle"], adjust: { noise: 10 }, reply: "Reduced noise a bit more." },
+                { keywords: ["harsh", "aggressive", "too much", "fake", "plastic", "over"], adjust: { sharp: -10, sat: -5, intensity: -10 }, reply: "Backed the intensity off." },
+                { keywords: ["detail", "texture", "sharper"], adjust: { sharp: 8, deblur: 6 }, reply: "Pulled out a bit more detail." }
+            ];
+
+            function assistantAdjust(text) {
+                const t = (text || "").toLowerCase().trim();
+                if (!t) return null;
+                const matches = RETOUCH_RULES.filter(r => r.keywords.some(k => t.includes(k)));
+                if (!matches.length) return null;
+                pushUndo();
+                matches.forEach(r => { Object.entries(r.adjust).forEach(([id, delta]) => nudgeSlider(id, delta)); });
+                if (State.ready) Engine.process(false);
+                return matches.map(m => m.reply).join(" ");
+            }
+
+            function renderAssistant(host) {
+                if (!host) return;
+                host.innerHTML = `
+                <div class="assistant-panel">
+                    <div class="assistant-head"><div class="assistant-avatar"><i class="fa-solid fa-sparkles"></i></div><div class="assistant-title">Retouch Assistant</div></div>
+                    <div class="assistant-sub">Not quite right? Tell me what's off and I'll adjust it.</div>
+                    <div class="assistant-log" id="assistantLog"></div>
+                    <div class="assistant-chips">
+                        <button class="assistant-chip" data-t="too dark">Too dark</button>
+                        <button class="assistant-chip" data-t="too bright">Too bright</button>
+                        <button class="assistant-chip" data-t="colors look off">Colors feel off</button>
+                        <button class="assistant-chip" data-t="still blurry">Still blurry</button>
+                        <button class="assistant-chip" data-t="too much noise">Too much noise</button>
+                        <button class="assistant-chip" data-t="too aggressive">Too aggressive</button>
+                    </div>
+                    <div class="assistant-input-row">
+                        <input class="assistant-input" id="assistantInput" placeholder="Or type your own feedback…">
+                        <button class="assistant-send" id="assistantSend">Fix it</button>
+                    </div>
+                    <button class="assistant-happy" id="assistantHappy"><i class="fa-solid fa-check"></i> I'm happy with this!</button>
+                </div>`;
+
+                const log = host.querySelector("#assistantLog");
+
+                function say(text) {
+                    const b = document.createElement("div");
+                    b.className = "assistant-bubble";
+                    b.textContent = text;
+                    log.appendChild(b);
+                    log.scrollTop = log.scrollHeight;
+                }
+
+                function handle(text) {
+                    const reply = assistantAdjust(text);
+                    say(reply || "I couldn't quite tell what to change — try a quick option above, or be more specific (e.g. \"too dark\", \"still blurry\").");
+                }
+
+                host.querySelectorAll(".assistant-chip").forEach(b => b.onclick = () => handle(b.dataset.t));
+                host.querySelector("#assistantSend").onclick = () => {
+                    const input = host.querySelector("#assistantInput");
+                    if (!input.value.trim()) return;
+                    handle(input.value);
+                    input.value = "";
+                };
+                host.querySelector("#assistantInput").addEventListener("keydown", e => { if (e.key === "Enter") host.querySelector(
+                        "#assistantSend").click(); });
+                host.querySelector("#assistantHappy").onclick = () => {
+                    say("🎉 Wonderful — enjoy your photo!");
+                    toast("🎉 Glad you're happy with it!");
+                };
+            }
+
+            function openAssistant() {
+                renderAssistant($("#assistantHost"));
+                $$(".tab-btn").forEach(b => b.classList.toggle("active", b.dataset.tab === "ai"));
+                $$(".tab-panel").forEach(p => p.classList.toggle("active", p.id === "tab-ai"));
+            }
+            renderAssistant($("#assistantHost"));
+
             // ═══════════════════════════════════════════
             // INIT
             // ═══════════════════════════════════════════
@@ -1906,8 +2569,8 @@
                     undo(); }
                 if (e.ctrlKey && e.key === "y") { e.preventDefault();
                     redo(); }
-                if (e.ctrlKey && e.key >= "1" && e.key <= "3") { e.preventDefault(); const tabs = ["adjust", "filters",
-                        "export"
+                if (e.ctrlKey && e.key >= "1" && e.key <= "4") { e.preventDefault(); const tabs = ["adjust", "filters",
+                        "ai", "export"
                     ],
                     tabName = tabs[parseInt(e.key) - 1];
                     $$(".tab-btn").forEach(b => { b.classList.toggle("active", b.dataset.tab === tabName); });
@@ -1915,10 +2578,10 @@
             });
             updateUndoRedoButtons();
             console.log("✅ PIC by MC88 — Ultimate Version");
-            console.log("🆕 100 Unique Presets | Undo/Redo | Custom Presets");
+            console.log("🆕 100 Presets | Undo/Redo | Custom Presets | AI Colorize/Restore/Upscale | Retouch Assistant");
             console.log("© mohamed005cheikh@gmail.com | by MC88");
-            console.log("⌨️ Ctrl+Z/Y Undo/Redo | Ctrl+S Save | Ctrl+R Remix | Ctrl+1/2/3 Tabs");
+            console.log("⌨️ Ctrl+Z/Y Undo/Redo | Ctrl+S Save | Ctrl+R Surprise | Ctrl+1-4 Tabs");
         })();
     </script>
 </body>
-</html>
+    </html>
