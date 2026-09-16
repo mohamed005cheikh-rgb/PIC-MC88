@@ -1,314 +1,135 @@
-# 📸 PIC by MC88 — Studio Photo Professionnel
+<div align="center">
 
-**PIC by MC88** est un studio photo professionnel entièrement dans votre navigateur avec **100 filtres prédéfinis**, des **outils d'amélioration avancés**, un **Studio IA** (colorisation, restauration, amélioration) et un **assistant de retouche** intelligent. Toutes les modifications locales restent sur votre appareil.
+# 📸 PIC by MC88
 
----
+**Un studio photo, dans votre navigateur.**
 
-## 📋 Prérequis
-
-1. Un navigateur web moderne (Chrome, Firefox, Edge, Safari, Brave, Opera)
-2. Connexion Internet requise uniquement pour les **actions IA** (modèles publics gratuits)
-3. Aucune installation de logiciel nécessaire
+</div>
 
 ---
 
-## 🚀 Guide d'installation
+## 👋 Bienvenue
 
-### Étape 1 : Télécharger le fichier
-1. Téléchargez le fichier `pic-mc88.html` sur votre ordinateur
-2. Placez-le dans un dossier de votre choix (ex : `C:\PIC\`)
+PIC est un petit studio photo qui tient dans une seule page web.
 
-### Étape 2 : Lancer l'application
-- **Méthode simple** : Double-cliquez sur le fichier
-- **Méthode alternative** : Faites un clic droit → « Ouvrir avec » → choisissez votre navigateur
+Vous y déposez une image, et vous la travaillez comme vous le feriez dans un vrai laboratoire : luminosité, contraste, netteté, couleurs — tout se règle au curseur, en direct, sous vos yeux. Vous pouvez aussi piocher parmi **cent filtres** classés par ambiance, réparer une vieille photo abîmée, ou confier à l'IA le soin de la coloriser ou de l'agrandir.
 
----
+Tout ce qui se passe localement — réglages, filtres, export — reste **sur votre appareil**. Rien ne part ailleurs. Seules les trois actions IA envoient votre photo à un service public (Hugging Face), et c'est clairement annoncé avant chaque utilisation.
 
-## 🎯 Fonctionnalités principales
-
-### 🎨 1. Studio d'Amélioration (7 curseurs)
-
-| Curseur | Plage | Description |
-|---------|-------|-------------|
-| **Brightness** (Luminosité) | 60-140 | Ajuste la luminosité globale |
-| **Contrast** (Contraste) | -30 à +60 | Ajuste le contraste |
-| **Sharpness** (Netteté) | 0-100 | Améliore la netteté des détails |
-| **Denoise** (Réduction de bruit) | 0-75 | Réduit le bruit numérique |
-| **Saturation** | -40 à +50 | Ajuste l'intensité des couleurs |
-| **Deblur** (Défloutage) | 0-100 | Réduit le flou |
-| **Intensity** (Intensité) | 10-100 | Force globale des filtres |
+C'est un outil pour prendre son temps, essayer, annuler, recommencer — jusqu'à ce que l'image ressemble enfin à ce qu'on avait en tête.
 
 ---
 
-### 🎭 2. Bibliothèque de 100 Filtres
+## 📸 Un aperçu
 
-**Catégories :**
+<div align="center">
+  <img src="https://github.com/mohamed005cheikh-rgb/pic-mc88/raw/main/images/Sc1.png" alt="Studio d'amélioration avec curseurs" width="100%" />
+</div>
 
-| Catégorie | Nombre | Description |
-|-----------|--------|-------------|
-| **Raw** | 8 | Filtres naturels et propres |
-| **Color** | 24 | Améliorations de couleurs |
-| **Mood** | 18 | Ambiances et atmosphères |
-| **B&W** | 8 | Noir et blanc |
-| **Repair** | 10 | Réparation de photos anciennes |
-| **Art** | 4 | Effets artistiques |
-| **Chaos** | 20 | Effets aléatoires et expérimentaux |
+<br />
 
-**Fonctionnalités :**
-- Recherche instantanée par nom
-- Filtrage par catégorie
-- Aperçu en temps réel
-- Bouton **Surprise** (🎲) pour un filtre aléatoire
+<div align="center">
+  <img src="https://github.com/mohamed005cheikh-rgb/pic-mc88/raw/main/images/Sc2.png" alt="Bibliothèque de filtres" width="100%" />
+</div>
 
----
+<br />
 
-### 🤖 3. Studio IA (3 actions)
+<div align="center">
+  <img src="https://github.com/mohamed005cheikh-rgb/pic-mc88/raw/main/images/Sr1.gif" alt="Ajuster une photo en temps réel" width="100%" />
+</div>
 
-| Action | Description | Modèle IA utilisé |
-|--------|-------------|-------------------|
-| **Colorize** | Colorise les photos noir et blanc | Modèles de colorisation Hugging Face |
-| **Restore** | Répare les rayures, le bruit, les visages flous | GFPGAN |
-| **Enhance & Upscale** | Améliore les détails et augmente la résolution | Real-ESRGAN |
+<br />
 
-**Important :**
-- Ces 3 actions envoient votre photo à un **service IA public gratuit** (pas notre serveur)
-- Tout le reste (curseurs, filtres, export) fonctionne **100% localement**
-- Les modèles sont appelés directement depuis votre navigateur
+<div align="center">
+  <img src="https://github.com/mohamed005cheikh-rgb/pic-mc88/raw/main/images/Sr2.gif" alt="Restaurer une photo ancienne avec l'IA" width="100%" />
+</div>
 
 ---
 
-### 🔄 4. Système Annuler/Rétablir (Undo/Redo)
+## ✨ Ce que vous trouverez
 
-- **30 étapes** d'historique maximum
-- Couvre les modifications de curseurs et de filtres
-- Raccourcis clavier : `Ctrl+Z` (annuler), `Ctrl+Y` (rétablir)
-- Boutons dédiés dans la barre latérale
+**Sept curseurs pour tout régler.**  
+Luminosité, contraste, netteté, réduction de bruit, saturation, défloutage, intensité globale. Chaque ajustement s'applique immédiatement — vous voyez la photo changer à chaque mouvement.
 
----
+**Cent filtres, classés par humeur.**  
+Des filtres naturels (*Raw*), des corrections de couleur (*Color*), des ambiances (*Mood*), du noir et blanc (*B&W*), des outils de réparation (*Repair*), des effets artistiques (*Art*), et une catégorie d'expérimentations (*Chaos*). Vous cherchez par nom, vous filtrez par catégorie, et si l'inspiration manque, un bouton **Surprise** (🎲) en choisit un pour vous.
 
-### 📌 5. Préréglages Personnalisés
+**Un studio IA pour les cas difficiles.**  
+Trois actions sont là pour vous aider :
+- **Colorize** — redonner vie à une photo en noir et blanc.
+- **Restore** — réparer les rayures, le bruit, les visages flous.
+- **Enhance & Upscale** — améliorer les détails et augmenter la résolution.
 
-- **Sauvegardez** vos réglages favoris (20 maximum)
-- **Nommez** vos préréglages
-- **Appliquez** en un clic
-- **Supprimez** avec le bouton ✕
-- Stockage local persistant
+Ces trois actions **envoient votre photo à un modèle public Hugging Face**. Tout le reste (curseurs, filtres, export) fonctionne à 100% sur votre machine.
 
----
+**Annuler, refaire — autant de fois qu'il faut.**  
+Trente étapes d'historique couvrent vos réglages et vos filtres. `Ctrl+Z` pour revenir en arrière, `Ctrl+Y` pour avancer. Vous pouvez essayer sans crainte.
 
-### 📊 6. Historique des Versions IA
+**Vos propres préréglages.**  
+Vous avez trouvé une combinaison qui vous plaît ? Sauvegardez-la sous un nom — elle reviendra en un clic la prochaine fois. Jusqu'à vingt réglages personnels.
 
-- Chaque action IA crée une **nouvelle version**
-- Basculez entre l'original et les versions IA
-- Les curseurs et filtres s'appliquent par-dessus la version sélectionnée
+**Un assistant qui vous comprend.**  
+Au lieu de tourner les curseurs à l'aveugle, dites simplement *« too dark »*, *« still blurry »* ou *« colors feel off »*. L'assistant ajuste les paramètres tout seul. Vous pouvez aussi décrire votre ressenti librement — il repère les mots-clés et agit.
 
----
+**Comparer avant / après.**  
+Un bouton suffit pour faire glisser une ligne de comparaison sur l'image. Utile pour mesurer le chemin parcouru — à la souris comme au doigt.
 
-### 💬 7. Assistant de Retouche
-
-Un assistant intelligent qui comprend vos retours :
-
-**Suggestions rapides :**
-- « Too dark » → augmente la luminosité
-- « Too bright » → réduit la luminosité
-- « Colors feel off » → ajuste la saturation
-- « Still blurry » → augmente la netteté
-- « Too much noise » → réduit le bruit
-- « Too aggressive » → réduit l'intensité
-
-**Saisie libre :**
-- Tapez votre propre feedback (ex. « too dark and blurry »)
-- L'assistant détecte les mots-clés et ajuste les curseurs
+**Exporter comme vous voulez.**  
+JPEG, PNG ou WebP, avec un réglage de qualité pour les formats compressés. Un raccourci `Ctrl+S` pour télécharger directement.
 
 ---
 
-### 📤 8. Exportation
+## 🧭 Comment ça marche
 
-**Formats supportés :**
-| Format | Extension | Qualité réglable |
-|--------|-----------|------------------|
-| **JPEG** | `.jpg` | Oui (10-100%) |
-| **PNG** | `.png` | Non (sans perte) |
-| **WebP** | `.webp` | Oui (10-100%) |
+**1. Déposez votre photo.**  
+Cliquez sur la zone d'import ou glissez-déposez votre image. Jusqu'à 15 Mo — ce qui couvre largement la plupart des photos de téléphone.
 
-**Raccourci clavier** : `Ctrl+S` pour télécharger directement
+**2. Réglez ce qui doit l'être.**  
+Dans l'onglet *Adjust*, les sept curseurs font le gros du travail. Chaque mouvement est appliqué en direct.
 
----
+**3. Choisissez un filtre.**  
+Dans l'onglet *Filters*, parcourez les cent préréglages. Cherchez par nom, filtrez par catégorie, essayez, annulez, réessayez. Le bouton *Surprise* peut vous sortir de votre zone de confort.
 
-## 📖 Guide d'utilisation détaillé
+**4. Si besoin, passez par l'IA.**  
+Dans *AI Studio*, choisissez une action. Le traitement prend une dizaine de secondes, et le résultat devient une nouvelle version de votre image — que vous pouvez comparer à l'originale et continuer à travailler.
 
-### 🔹 Étape 1 : Charger une photo
+**5. Exportez.**  
+Dans *Export*, choisissez le format et la qualité, puis téléchargez. Le fichier final reste chez vous.
 
-1. Cliquez sur la **zone de téléchargement** ou glissez-déposez votre image
-2. Formats acceptés : tous les formats image du navigateur
-3. Taille maximale : **15 Mo**
-
-### 🔹 Étape 2 : Ajuster les paramètres
-
-1. Utilisez les **7 curseurs** dans l'onglet « Adjust »
-2. Chaque modification est appliquée en **temps réel**
-3. Utilisez **Undo/Redo** pour revenir en arrière
-
-### 🔹 Étape 3 : Appliquer un filtre
-
-1. Ouvrez l'onglet **« Filters »**
-2. Parcourez les **100 préréglages**
-3. Utilisez la **recherche** ou les **catégories** pour filtrer
-4. Cliquez sur un filtre pour l'appliquer
-
-### 🔹 Étape 4 : Utiliser l'IA
-
-1. Ouvrez l'onglet **« AI Studio »**
-2. Choisissez une action : **Colorize**, **Restore**, ou **Enhance**
-3. Attendez le traitement (10-30 secondes)
-4. Le résultat est ajouté comme **nouvelle version**
-
-### 🔹 Étape 5 : Exporter
-
-1. Ouvrez l'onglet **« Export »**
-2. Choisissez le **format** (JPEG, PNG, WebP)
-3. Ajustez la **qualité** (pour JPEG et WebP)
-4. Cliquez sur **« Download Image »**
+À chaque étape, vous pouvez annuler. Rien n'est définitif tant que vous n'avez pas cliqué sur « télécharger ».
 
 ---
 
-## 🛠️ Guide de dépannage
+## 🛠️ Petits coups de main
 
-### Problème 1 : L'image ne se charge pas
+**Votre image refuse de se charger ?**  
+Vérifiez qu'elle ne dépasse pas 15 Mo, et qu'elle est dans un format courant (JPEG, PNG, WebP). Si le problème persiste, essayez-en une autre — parfois c'est le fichier lui-même qui est abîmé.
 
-**Cause** : Fichier trop volumineux ou format non supporté.
+**Les actions IA ne répondent pas ?**  
+Les modèles publics Hugging Face sont parfois surchargés. Vérifiez votre connexion, attendez une minute, réessayez. Un repli local s'active automatiquement : pour *Restore* et *Upscale*, les curseurs compensent ; pour *Colorize*, aucune solution locale honnête n'existe, et l'outil vous le dira clairement.
 
-**Solution** :
-- Vérifiez que la taille est inférieure à **15 Mo**
-- Utilisez un format courant (JPEG, PNG, WebP)
-- Essayez avec une autre image
+**Tout est lent ?**  
+Sur une grosse image ou un appareil modeste, c'est normal. L'outil réduit automatiquement la taille de travail — 1536 px pour l'IA, 1080 px pour l'aperçu. Fermez quelques onglets si votre machine peine.
 
----
+**Vos préréglages ont disparu ?**  
+Vous êtes probablement en navigation privée, où le stockage local est désactivé. Utilisez une fenêtre normale pour les conserver.
 
-### Problème 2 : Les actions IA ne fonctionnent pas
-
-**Cause** : Les modèles publics Hugging Face sont temporairement indisponibles.
-
-**Solution** :
-- Vérifiez votre **connexion Internet**
-- Attendez quelques minutes et réessayez
-- Un **fallback local** est appliqué automatiquement
-- Pour Restore/Upscale : les curseurs sont ajustés en compensation
-- Pour Colorize : aucun substitut local honnête n'existe
+**L'assistant ne comprend pas ?**  
+Soyez plus précis : *« too dark »* plutôt que *« bad »*. Il reconnaît les mots comme *dark*, *bright*, *blurry*, *noise*, *color*, *detail*. Les suggestions rapides proposées à côté du champ sont toujours un bon point de départ.
 
 ---
 
-### Problème 3 : Le traitement est lent
+<div align="center">
 
-**Cause** : Image volumineuse ou appareil peu puissant.
+### 📞 Une question, une idée ?
 
-**Solution** :
-- L'image est automatiquement réduite à **1536px** pour l'IA
-- L'aperçu est limité à **1080px** pour les performances
-- Fermez les autres onglets gourmands
+[![Email](https://img.shields.io/badge/Email-mohamed005cheikh@gmail.com-d14836?style=flat-square&logo=gmail&logoColor=white)](mailto:mohamed005cheikh@gmail.com)
+[![WhatsApp](https://img.shields.io/badge/WhatsApp-+222_30_72_64_75-25D366?style=flat-square&logo=whatsapp&logoColor=white)](https://wa.me/22230726475)
 
----
+<br />
 
-### Problème 4 : Les préréglages personnalisés ne se sauvegardent pas
+*Bonnes retouches.*
 
-**Cause** : Le stockage local est désactivé ou en navigation privée.
+<sub>© 2026 Mohamed Cheikh — MC88</sub>
 
-**Solution** :
-- Vérifiez que le stockage local est activé
-- En navigation privée, les préréglages seront réinitialisés
-- C'est un comportement normal
-
----
-
-### Problème 5 : Le mode comparaison ne fonctionne pas
-
-**Cause** : Le glisser-déposer n'est pas actif.
-
-**Solution** :
-- Cliquez sur le bouton **« Compare »** dans le dock flottant
-- Glissez sur l'image pour déplacer la ligne de comparaison
-- Fonctionne avec la souris et le tactile
-
----
-
-### Problème 6 : L'assistant de retouche ne comprend pas
-
-**Cause** : Le texte saisi ne contient pas de mots-clés reconnus.
-
-**Solution** :
-- Utilisez les **suggestions rapides** proposées
-- Soyez plus spécifique (ex. « too dark » au lieu de « bad »)
-- L'assistant comprend : dark, bright, blurry, noise, color, detail, etc.
-
----
-
-## ⌨️ Raccourcis clavier
-
-| Raccourci | Action |
-|-----------|--------|
-| `Ctrl+Z` | Annuler |
-| `Ctrl+Y` | Rétablir |
-| `Ctrl+S` | Télécharger |
-| `Ctrl+R` | Filtre surprise |
-| `Ctrl+1` | Onglet Adjust |
-| `Ctrl+2` | Onglet Filters |
-| `Ctrl+3` | Onglet AI Studio |
-| `Ctrl+4` | Onglet Export |
-| `Échap` | Fermer les popups |
-
----
-
-## 📄 Copyright
-
-**© 2026**  
-📧 mohamed005cheikh@gmail.com  
-**Créé par MC**  
-**Tous droits réservés**
-
----
-
-## 🔒 Confidentialité
-
-| Type d'action | Traitement |
-|---------------|------------|
-| **Curseurs, filtres, export** | 100% local (aucune donnée envoyée) |
-| **Actions IA** | Envoyées aux modèles publics Hugging Face |
-| **Préréglages personnalisés** | Stockés localement uniquement |
-| **Historique des versions** | En mémoire uniquement |
-
----
-
-## 🔧 Modèles IA utilisés
-
-| Action | Modèles (dans l'ordre) |
-|--------|------------------------|
-| **Colorize** | `viveknarayan/Image_Colorization`, `Shashank009/Black_and_white_image_colorization` |
-| **Restore** | `randomtable/Image-Restoration-GFPGAN` |
-| **Upscale** | `kotchu/real-esrgan`, `Hockman/real-esrgan-upscaler` |
-
-**Pour ajouter ou remplacer un modèle :**
-1. Visitez [huggingface.co/spaces](https://huggingface.co/spaces)
-2. Recherchez le type de modèle souhaité
-3. Copiez le nom `PROPRIÉTAIRE/NOM` de l'espace
-4. Collez-le dans la liste `AI_PROVIDERS` du script
-
----
-
-## ✅ Fonctionnalités techniques
-
-- **100 filtres** avec équations uniques par catégorie
-- **7 curseurs** d'amélioration en temps réel
-- **3 actions IA** via API Hugging Face
-- **Undo/Redo** avec 30 étapes
-- **Préréglages personnalisés** persistants
-- **Versions IA** avec basculement
-- **Assistant de retouche** à base de règles
-- **Mode comparaison** avant/après
-- **3 thèmes** (Midnight, Gray, Light)
-- **Design responsive** mobile-first
-- **Raccourcis clavier** complets
-- **Export** JPEG/PNG/WebP
-
----
-
-**Bonnes retouches photo ! 📸✨**
+</div>
