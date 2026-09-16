@@ -19,7 +19,7 @@ Tout ce qui se passe localement — réglages, filtres, export — reste **sur v
 C'est un outil pour prendre son temps, essayer, annuler, recommencer — jusqu'à ce que l'image ressemble enfin à ce qu'on avait en tête.
 
 ---
-
+<!-- 
 ## 📸 Un aperçu
 
 <div align="center">
@@ -45,7 +45,7 @@ C'est un outil pour prendre son temps, essayer, annuler, recommencer — jusqu'�
 </div>
 
 ---
-
+-->
 ## ✨ Ce que vous trouverez
 
 **Sept curseurs pour tout régler.**  
